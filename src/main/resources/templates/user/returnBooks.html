@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户还书</title>
+    <link href="/layui/css/layui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/styles/custom.css"/>
+    <style>
+
+        /* 页面主体背景色 */
+        .layui-body {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 标题样式 */
+        .page-title {
+            text-align: center;
+            font-size: 26px;
+            color: #1E9FFF;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* 功能说明样式 */
+        .function-description {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* 输入框样式 */
+        #bookId {
+            width: 60%;
+            margin: 10px auto;
+            display: block;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #e6e6e6;
+            border-radius: 4px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+        }
+
+        /* 输入框聚焦时样式 */
+        #bookId:focus {
+            border-color: #1E9FFF;
+            box-shadow: inset 0 0 5px rgba(30, 159, 255, 0.3);
+        }
+
+        /* 按钮样式 */
+        #btn1 {
+            display: block;
+            width: 30%;
+            margin: 20px auto;
+            background-color: #1E9FFF;
+            color: #ffffff;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        #btn1:hover {
+            background-color: #0094d7;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!-- 顶部导航 -->
+    <div th:include="common/user_header :: header"></div>
+
+    <!-- 侧边导航 -->
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree">
+                <li class="layui-nav-item"><a href="/userLogin"><i class="layui-icon layui-icon-home"></i> 图书馆首页</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-template"></i> 书籍信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/findBookPage">&emsp;&emsp;<i class="layui-icon layui-icon-search"></i> 查询书籍</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-edit"></i> 书籍管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/borrowingPage">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 借阅书籍</a></dd>
+                        <dd class="layui-this"><a href="/userReturnBooksPage">&emsp;&emsp;<i class="layui-icon layui-icon-reduce-circle"></i> 归还书籍</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-list"></i> 借阅信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/userBorrowBookRecord">&emsp;&emsp;<i class="layui-icon layui-icon-notice"></i> 借书记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-edit"></i> 活动信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/activityList">&emsp;&emsp;<i class="layui-icon layui-icon-notice"></i> 图书活动</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a class="layui-nav-child" href="/bookListPage"><i class="layui-icon layui-icon-file"></i> 图书列表</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 内容主体区域 -->
+    <div class="layui-body layui-container">
+        <div class="page-title">用户还书</div>
+
+        <!-- 功能说明 -->
+        <div class="function-description">
+            <p>欢迎来到图书馆还书页面！</p>
+            <p>请您在下方输入您要归还的书籍编号，并点击“确认还书”按钮。</p>
+            <p>如果您不确定书籍编号，可以在“已借阅书籍”列表中找到相应的编号。</p>
+            <p>如有任何问题，请咨询图书馆管理员。</p>
+        </div>
+
+        <div>
+            <input class="layui-input-block" placeholder="请输入书籍编号" autocomplete="off" autofocus id="bookId" type="text" name="bookId">
+            <button class="layui-btn" id="btn1">确认还书</button>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div th:include="common/footer :: footer"></div>
+</div>
+
+<!-- 引入脚本 -->
+<script src="/scripts/jquery.min.js"></script>
+<script src="/layui/layui.js"></script>
+<script src="/scripts/user/returnBook.js"></script>
+
+</body>
+</html>

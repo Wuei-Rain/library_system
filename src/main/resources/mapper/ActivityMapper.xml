@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wl.mapper.ActivityMapper">
+
+    <insert id="insertActivity" parameterType="com.wl.domain.Activity">
+        INSERT INTO activity (activity_name, activity_date, activity_location, activity_description)
+        VALUES (#{activityName}, #{activityDate} , #{activityLocation}, #{activityDescription})
+    </insert>
+
+    <select id="selectAllActivities" resultType="com.wl.domain.Activity">
+        SELECT id, activity_name AS activityName, activity_date AS activityDate,
+                 activity_location AS activityLocation,
+               activity_description AS activityDescription
+        FROM activity
+    </select>
+
+    <resultMap id="ActivityMap" type="com.wl.domain.Activity">
+        <id property="id" column="id" />
+        <result property="activityName" column="activity_name" />
+        <result property="activityDate" column="activity_date" />
+        <result property="activityLocation" column="activity_location" />
+        <result property="activityDescription" column="activity_description" />
+    </resultMap>
+
+
+</mapper>
+

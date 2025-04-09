@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员-添加书籍</title>
+    <link href="/layui/css/layui.css" rel="stylesheet" media="all"/>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+
+    <div th:include="common/admin_header :: header"></div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree">
+                <li class="layui-nav-item"><a href="/adminLogin"><i class="layui-icon layui-icon-home"></i> 图书馆首页</a></li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-read"></i> 书籍管理</a>
+                    <dl class="layui-nav-child layui-nav-itemed">
+                        <dd class="layui-this"><a href="/addBookPage">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 录入新书</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-tabs"></i> 类别管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/addCategoryPage?pageNum=1">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 新建类别</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-list"></i> 书籍信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/showBooksPage">&emsp;&emsp;<i class="layui-icon layui-icon-search"></i> 查询书籍</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-user"></i> 用户管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/showUsersPage?pageNum=1">&emsp;&emsp;<i class="layui-icon layui-icon-group"></i> 管理用户</a></dd>
+                        <dd><a href="/addUserPage">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 新增用户</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-notice"></i> 借阅信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/allBorrowBooksRecordPage?pageNum=1">&emsp;&emsp;<i class="layui-icon layui-icon-form"></i> 借书记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-notice"></i> 活动管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="publishActivity">&emsp;&emsp;<i class="layui-icon layui-icon-form"></i> 发布活动</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="/feedbackList"><i class="layui-icon layui-icon-username"></i> 反馈信息</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="layui-body layui-container"
+         style="margin : 10px auto; padding:10px 16px ;border: 200px; width: 480px; height: 580px; background-color: #f2f2f2">
+
+        <hr class="layui-bg-blue">
+        <h2 style="text-align:center">添加书籍</h2>
+        <hr class="layui-bg-blue">
+
+        <div style="width: 420px; padding: 20px; margin: auto auto; background-color: #f2f2f2">
+            <form class="layui-form" id="addBookForm">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">书 名</label>
+                    <div class="layui-input-inline">
+                        <input required lay-verify="required" id="bookName" type="text" name="bookName"
+                               placeholder="请输入书名" autofocus
+                               class="layui-input" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">作 者</label>
+                    <div class="layui-input-inline">
+                        <input id="bookAuthor" lay-verify="required" type="text" name="bookAuthor" placeholder="请输入作者"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">出版社</label>
+                    <div class="layui-input-inline">
+                        <input id="bookPublish" lay-verify="required" type="text" name="bookPublish"
+                               placeholder="请输入出版社" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">类 别</label>
+                    <div class="layui-input-inline">
+                        <select lay-verify="required" id="bookCategory" name="bookCategory">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">价 格</label>
+                    <div class="layui-input-inline">
+                        <input id="bookPrice" lay-verify="number" type="text" name="bookPrice" placeholder="￥"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">简 介</label>
+                    <div class="layui-input-inline">
+                    <textarea id="bookIntroduction" lay-verify="required" name="bookIntroduction" placeholder="请输入简介"
+                              class="layui-textarea "
+                              autocomplete="off"></textarea>
+                    </div>
+                </div>
+
+                <div style="margin-left: 100px">
+                    <input type="submit" lay-filter="btn1" id="btn1" class="layui-btn" lay-submit="" value="添加图书">
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+    <div th:include="common/footer :: footer"></div>
+
+</div>
+
+<script src="/scripts/jquery.min.js"></script>
+<script src="/layui/layui.js"></script>
+<script src="/scripts/admin/addBook.js"></script>
+
+</body>
+</html>

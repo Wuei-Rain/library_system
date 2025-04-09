@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>借阅书籍</title>
+    <link href="/layui/css/layui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/styles/custom.css" />
+    <style>
+        body{
+            background-color: #f2f2f2;
+        }
+        /* 页面的主体样式 */
+        .layui-container {
+            padding: 20px;
+        }
+
+        /* 顶部标题样式 */
+        .page-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        /* 搜索栏样式 */
+        .search-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* 搜索输入框和按钮样式 */
+        #searchInput {
+            width: 300px;
+            height: 40px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        #searchBtn {
+            height: 40px;
+            padding: 0 20px;
+            font-size: 16px;
+            background-color: #1E9FFF;
+            color: #ffffff;
+        }
+
+        /* 搜索结果样式 */
+        #results {
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #F8F8F8;
+            border: 1px solid #E4E4E4;
+            border-radius: 4px;
+        }
+
+        /* 自定义图标样式 */
+        .layui-nav-item i {
+            font-size: 18px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div th:include="common/user_header :: header"></div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree">
+                <li class="layui-nav-item">
+                    <a href="/userLogin"><i class="layui-icon layui-icon-home"></i> 图书馆首页</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-template"></i> 书籍信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/findBookPage"><i class="layui-icon layui-icon-search"></i> 查询书籍</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-edit"></i> 书籍管理</a>
+                    <dl class="layui-nav-child">
+                        <dd class="layui-this"><a href="/borrowingPage"><i class="layui-icon layui-icon-add-circle"></i> 借阅书籍</a></dd>
+                        <dd><a href="/userReturnBooksPage"><i class="layui-icon layui-icon-reduce-circle"></i> 归还书籍</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-list"></i> 借阅信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/userBorrowBookRecord"><i class="layui-icon layui-icon-notice"></i> 借书记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-edit"></i> 活动信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/activityList"><i class="layui-icon layui-icon-notice"></i> 图书活动</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="/bookListPage"><i class="layui-icon layui-icon-file"></i> 图书列表</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body layui-container">
+        <div class="page-title">用户借书</div>
+
+        <div class="search-section">
+            <input id="searchInput" class="layui-input" placeholder="请输入书籍名称" autocomplete="off" autofocus>
+            <button id="searchBtn" class="layui-btn layui-bg-blue">搜索书籍</button>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <div th:include="common/footer :: footer"></div>
+</div>
+
+<script src="/scripts/jquery.min.js"></script>
+<script src="/layui/layui.all.js"></script>
+<script src="/scripts/user/borrowingBook.js"></script>
+
+</body>
+</html>

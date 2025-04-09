@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员-用户借书记录</title>
+    <link href="/layui/css/layui.css" rel="stylesheet" media="all"/>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+
+    <div th:include="common/admin_header :: header"></div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree">
+                <li class="layui-nav-item"><a href="/adminLogin"><i class="layui-icon layui-icon-home"></i> 图书馆首页</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-read"></i> 书籍管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/addBookPage">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 录入新书</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-tabs"></i> 类别管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/addCategoryPage?pageNum=1">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 新建类别</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-list"></i> 书籍信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/showBooksPage">&emsp;&emsp;<i class="layui-icon layui-icon-search"></i> 查询书籍</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-user"></i> 用户管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/showUsersPage?pageNum=1">&emsp;&emsp;<i class="layui-icon layui-icon-group"></i> 管理用户</a></dd>
+                        <dd><a href="/addUserPage">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 新增用户</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-notice"></i> 借阅信息</a>
+                    <dl class="layui-nav-child">
+                        <dd class="layui-this"><a href="/allBorrowBooksRecordPage?pageNum=1">&emsp;&emsp;<i class="layui-icon layui-icon-form"></i> 借书记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-notice"></i> 活动管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="publishActivity">&emsp;&emsp;<i class="layui-icon layui-icon-form"></i> 发布活动</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="/feedbackList"><i class="layui-icon layui-icon-username"></i> 反馈信息</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body layui-container">
+
+        <hr class="layui-bg-blue">
+        <h2 style="text-align:center">用户借书记录</h2>
+        <hr class="layui-bg-blue">
+
+        <table class="layui-table" lay-size="sm">
+
+            <thead>
+            <tr>
+                <td>用户</td>
+                <td>书籍</td>
+                <td>借书日期</td>
+                <td>最晚还书日期</td>
+            </tr>
+            </thead>
+
+            <tr th:each="borrowingBooks:${page.getList()}">
+                <td><label th:text="${borrowingBooks.getUser().getUserName()}"></label></td>
+                <td><label th:text="${borrowingBooks.getBook().getBookName()}"></label></td>
+                <td><label th:text="${borrowingBooks.getDateOfBorrowing()}"></label></td>
+                <td><label th:text="${borrowingBooks.getDateOfReturn()}"></label></td>
+            </tr>
+
+            <tr>
+                <td colspan="5">
+                    <div style="margin: auto; width: 160px;">
+
+                        <a id="prePage" th:href="@{/allBorrowBooksRecordPage(pageNum=${page.getPageNum()-1})}">
+                            <button class="layui-btn layui-btn-sm">上一页</button>
+                        </a>
+                        <label id="lab1" th:text="${page.getPageNum()}"></label>
+
+                        <span>/</span>
+
+                        <label id="lab2" th:text="${page.getPageCount()}"></label>
+
+                        <a id="nextPage" th:href="@{/allBorrowBooksRecordPage(pageNum=${page.getPageNum()+1})}">
+                            <button class="layui-btn layui-btn-sm">下一页</button>
+                        </a>
+                    </div>
+
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div th:include="common/footer :: footer"></div>
+
+</div>
+
+<script src="/scripts/jquery.min.js"></script>
+<script src="/layui/layui.js"></script>
+<script src="/scripts/admin/allBorrowingBooksRecord.js"></script>
+
+</body>
+</html>

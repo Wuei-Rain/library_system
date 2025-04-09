@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>图书馆首页</title>
+    <link href="/layui/css/layui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/styles/custom.css"/>
+    <style>
+        body {
+            background-color: #d3ba79;
+        }
+        .carousel {
+            position: relative;
+            margin: 20px auto;
+            width: 80%;
+            height: 400px;
+            overflow: hidden;
+        }
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .button {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+        }
+        .nav-bar {
+            text-align: center;
+            margin: 10px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .nav-bar a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+        }
+        .section {
+            margin: 20px auto;
+            text-align: center;
+        }
+        .section h2 {
+            margin-bottom: 20px;
+        }
+        .book-card {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            height: 250px;
+            overflow: hidden;
+        }
+        .book-card img {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+        .book-card h3, .book-card p {
+            margin: 5px 0;
+            text-align: center;
+        }
+        .search-bar {
+            margin: 20px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div th:include="common/user_header :: header"></div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree">
+                <li class="layui-nav-item"><a href="/userLogin"><i class="layui-icon layui-icon-home"></i> 图书馆首页</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-template"></i> 书籍信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/findBookPage"><i class="layui-icon layui-icon-search"></i> 查询书籍</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-edit"></i> 书籍管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/borrowingPage"><i class="layui-icon layui-icon-add-circle"></i> 借阅书籍</a></dd>
+                        <dd><a href="/userReturnBooksPage"><i class="layui-icon layui-icon-reduce-circle"></i> 归还书籍</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-list"></i> 借阅信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/userBorrowBookRecord"><i class="layui-icon layui-icon-notice"></i> 借书记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-edit"></i> 活动信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/activityList"><i class="layui-icon layui-icon-notice"></i> 图书活动</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="/bookListPage"><i class="layui-icon layui-icon-file"></i> 图书列表</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <div class="layui-container">
+        <h1 style="text-align: center; margin: 20px;">欢迎光临图书馆</h1>
+
+        <div class="nav-bar">
+            <a href="/library-introduction">图书馆简介</a>
+            <a href="/guide">借阅指南</a>
+            <a href="/feedbackForm">联系我们</a>
+            <a href="/notifications">通知公告</a>
+        </div>
+
+        <div class="carousel">
+            <img src="/images/lib5.jpg" alt="轮播图5" class="active">
+            <img src="/images/lib4.jpg" alt="轮播图2">
+            <img src="/images/lib.jpg" alt="轮播图3">
+            <div class="carousel-buttons">
+                <button class="button" id="prevBtn">&#10094;</button>
+                <button class="button" id="nextBtn">&#10095;</button>
+            </div>
+        </div>
+        <div class="section">
+            <h2>热门书籍推荐</h2>
+            <div class="book-card">
+                <img src="/images/xiyouji.png" alt="书籍1">
+                <h3>西游记</h3>
+                <p>作者: 施耐庵</p>
+                <p>简介: 描写唐僧师徒四人西天取经的传奇小说。</p>
+            </div>
+            <div class="book-card">
+                <img src="/images/bailuyuan.png" alt="书籍2">
+                <h3>白鹿原</h3>
+                <p>作者: 陈忠实</p>
+                <p>简介: 陕西白鹿原上百年间的历史变迁与人性冲突。</p>
+            </div>
+            <div class="book-card">
+                <img src="/images/fuhuo.png" alt="书籍3">
+                <h3>复活</h3>
+                <p>作者: 列夫·托尔斯泰</p>
+                <p>简介: 讲述贵族青年涅赫留多夫追寻救赎与人性的故事。</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>新书上架</h2>
+            <div class="book-card">
+                <img src="/images/ltxz.jpg" alt="新书1">
+                <h3>骆驼祥子</h3>
+                <p>作者: 老舍</p>
+                <p>简介: 北平车夫的悲惨命运，反映社会的不公与人性的扭曲。</p>
+            </div>
+            <div class="book-card">
+                <img src="/images/jyzhd.jpg" alt="新书2">
+                <h3>解忧杂货店</h3>
+                <p>作者: 东野圭吾</p>
+                <p>简介: 一个神奇杂货店，传递温暖与希望。</p>
+            </div>
+        </div>
+    </div>
+
+    <div th:include="common/footer :: footer"></div>
+</div>
+
+<script src="/scripts/jquery.min.js"></script>
+<script src="/layui/layui.js"></script>
+<script>
+    layui.use(['form', 'element'], function () {
+        let form = layui.form;
+        let element = layui.element;
+    });
+
+    let currentIndex = 0;
+    const images = $('.carousel img');
+
+    function showImage(index) {
+        images.removeClass('active').fadeOut();
+        images.eq(index).addClass('active').fadeIn();
+    }
+
+    $('#prevBtn').click(function() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    });
+
+    $('#nextBtn').click(function() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    });
+</script>
+</div>
+</body>
+</html>

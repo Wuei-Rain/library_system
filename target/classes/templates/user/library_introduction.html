@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>图书馆简介 </title>
+    <link href="/layui/css/layui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/styles/custom.css"/>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            /*margin: 0;*/
+            /*padding: 20px;*/
+            background-color: #f9f9f9;
+        }
+        header {
+            background: #6bb68a;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        main {
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+        h2 {
+            color: #e51041;
+            margin-top: 20px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .introduction-section {
+            background: white;
+            /*border: 1px solid #ddd;*/
+            /*margin-bottom: 5px;*/
+            padding: 5px;
+            /*border-radius: 5px;*/
+            /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+        }
+        footer {
+            width: 100%;
+            background-color: #f9f9f9; /* 背景颜色可以根据需要调整 */
+            color: #333; /* 文字颜色可以根据需要调整 */
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <header>
+        <h1>图书馆简介</h1>
+    </header>
+
+    <main>
+        <div class="introduction-section">
+        <h2>欢迎来到我们的图书馆！</h2>
+        <p>作为社区文化的重要组成部分，我们致力于为所有读者提供一个丰富多彩的知识殿堂。自成立以来，我们始终秉承“知识改变命运，阅读丰富生活”的理念，努力营造一个开放、包容的学习环境，鼓励每位读者探索新知，追求卓越。</p>
+        </div>
+
+        <div class="introduction-section">
+        <h2>使命与愿景</h2>
+        <p>我们的使命是推动全民阅读，促进知识共享，支持终身学习。我们希望通过丰富的图书资源和多样的活动，激发每位读者的阅读兴趣，帮助他们实现个人成长与发展。</p>
+        </div>
+        <div class="introduction-section">
+        <h2>资源与服务</h2>
+        <ul>
+            <li><strong>馆藏资源：</strong>我们拥有丰富的纸质书籍、电子书、期刊及多媒体资料，涵盖各个领域。</li>
+            <li><strong>借阅服务：</strong>便捷的借阅与归还流程，支持自助借还机。</li>
+            <li><strong>参考咨询：</strong>专业的图书馆员为您提供信息检索与咨询服务。</li>
+        </ul>
+        </div>
+        <div class="introduction-section">
+        <h2>学习与交流</h2>
+        <p>我们的图书馆不仅是书籍的存储地，更是学习与交流的空间。馆内设有阅读区、学习室和多功能活动室，欢迎各类活动的举办。</p>
+        </div>
+        <div class="introduction-section">
+        <h2>社区参与</h2>
+        <p>我们积极与当地学校和社区组织合作，举办读书分享会、亲子阅读活动及文化讲座，鼓励社区成员积极参与。</p>
+        </div>
+        <div class="introduction-section">
+            <h2>发展愿景</h2>
+            <p>展望未来，智慧之光图书馆将继续坚持创新发展，不断提升服务品质，努力打造成为广大市民的精神家园。我们热忱欢迎社会各界人士走进图书馆，共享阅读的快乐，共创美好未来！</p>
+        </div>
+        <div class="introduction-section">
+        <h2>联系我们</h2>
+        <p>无论您是学生、教师、研究者，还是普通读者，我们都欢迎您的光临。如有任何问题或建议，请随时与我们联系。</p>
+        <p><strong>地址：</strong>广州城建职业技术学院</p>
+        <p><strong>电话：</strong>123-456-789</p>
+        <p><strong>网站：</strong>https://localhost:8088</p>
+        </div>
+    </main>
+
+
+
+
+    <script src="/scripts/jquery.min.js"></script>
+    <script src="/layui/layui.js"></script>
+</div>
+<footer>
+    <p>感谢您关注我们的图书馆，我们期待为您提供优质的服务，陪伴您在知识的海洋中遨游！</p>
+</footer>
+</body>
+</html>

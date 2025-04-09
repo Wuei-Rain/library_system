@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>借阅指南 </title>
+    <link href="/layui/css/layui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/styles/custom.css"/>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            /*font-family: Arial, sans-serif;*/
+            /*margin: 0;*/
+            /*padding: 20px;*/
+        }
+        header {
+            background: #6bb68a;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        main {
+            margin-top: 20px;
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+        }
+        .guide-section {
+            background: white;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        hr {
+            border: 1px solid #e0e0e0;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        footer {
+            width: 100%;
+            background-color: #f9f9f9; /* 背景颜色可以根据需要调整 */
+            color: #333; /* 文字颜色可以根据需要调整 */
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <header>
+        <h1>借阅指南</h1>
+    </header>
+
+    <main>
+        <div class="guide-section">
+            <p>欢迎来到我们的图书馆！为了帮助您顺利借阅书籍，请仔细阅读以下指南。</p>
+            <hr>
+        </div>
+
+        <div class="guide-section">
+            <h3>1. 注册成为会员</h3>
+            <p>请前往图书馆前台或寻找管理员。</p>
+            <p><strong>所需材料：</strong>有效身份证明（如身份证、学生证）和联系方式。</p>
+        </div>
+
+        <div class="guide-section">
+            <h3>2. 查找书籍</h3>
+            <p><strong>方式：</strong></p>
+            <ul>
+                <li>使用馆内电脑查询系统。</li>
+                <li>访问我们的官方网站，使用在线搜索功能。</li>
+            </ul>
+            <p>书籍按类别、作者等进行分类，方便查找。</p>
+        </div>
+
+        <div class="guide-section">
+            <h3>3. 借阅书籍</h3>
+            <p><strong>步骤：</strong></p>
+            <ol>
+                <li>找到您想借阅的书籍，带上书籍到借阅窗口，出示您的会员卡及身份证明。</li>
+                <li>通过登录个人账号在官网提前借阅，并出示相关信息给前台人员。</li>
+            </ol>
+        </div>
+
+        <div class="guide-section">
+            <h3>4. 借阅期限</h3>
+            <ul>
+                <li><strong>期限：</strong>60天</li>
+            </ul>
+        </div>
+
+        <div class="guide-section">
+            <h3>6. 归还书籍</h3>
+            <p><strong>步骤：</strong></p>
+            <ol>
+                <li>将书籍带到借阅窗口或指定的还书箱。</li>
+                <li>通过登录个人账号在官网进行归还，并将书交给图书馆前台人员。</li>
+            </ol>
+            <p><strong>注意事项：</strong>请在到期日之前归还书籍，以免产生逾期罚款。</p>
+        </div>
+
+        <div class="guide-section">
+            <h3>7. 逾期罚款</h3>
+            <p><strong>收费标准：</strong>每本书逾期一天收取1元罚款。</p>
+        </div>
+
+        <div class="guide-section">
+            <h3>8. 会员卡遗失</h3>
+            <p>如会员卡遗失，请尽快前往服务台申请补办。</p>
+        </div>
+
+        <div class="guide-section">
+            <h3>9. 特别活动</h3>
+            <p>关注图书馆的特别活动和讲座，积极参与。</p>
+        </div>
+
+        <div class="guide-section">
+            <h3>10. 借阅记录</h3>
+            <p>可在会员账户中查看历史借阅记录。</p>
+        </div>
+
+        <div class="guide-section">
+            <h3>11. 图书损坏</h3>
+            <p>如借阅的书籍损坏，请及时告知工作人员。</p>
+        </div>
+
+        <div class="guide-section">
+            <h3>12. 联系我们</h3>
+            <p>如有任何问题，请随时联系我们的工作人员或拨打电话：123-456-7890。</p>
+        </div>
+    </main>
+
+</div>
+<footer>
+    <p>感谢您关注我们的图书馆，我们期待为您提供优质的服务，陪伴您在知识的海洋中遨游！</p>
+</footer>
+<script src="/scripts/jquery.min.js"></script>
+<script src="/layui/layui.js"></script>
+</body>
+</html>

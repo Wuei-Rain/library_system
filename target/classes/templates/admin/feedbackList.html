@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员-用户反馈列表</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" />
+    <script src="/layui/layui.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+
+    <div th:include="common/admin_header :: header"></div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree">
+                <li class="layui-nav-item"><a href="/adminLogin"><i class="layui-icon layui-icon-home"></i> 图书馆首页</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-read"></i> 书籍管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/addBookPage">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 录入新书</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-tabs"></i> 类别管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/addCategoryPage?pageNum=1">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 新建类别</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-list"></i> 书籍信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/showBooksPage">&emsp;&emsp;<i class="layui-icon layui-icon-search"></i> 查询书籍</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-user"></i> 用户管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/showUsersPage?pageNum=1">&emsp;&emsp;<i class="layui-icon layui-icon-group"></i> 管理用户</a></dd>
+                        <dd><a href="/addUserPage">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 新增用户</a></dd>
+
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-notice"></i> 借阅信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/allBorrowBooksRecordPage?pageNum=1">&emsp;&emsp;<i class="layui-icon layui-icon-form"></i> 借书记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-notice"></i> 活动管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="publishActivity">&emsp;&emsp;<i class="layui-icon layui-icon-form"></i> 发布活动</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed"><a class="layui-nav-child" href="/feedbackList"><i class="layui-icon layui-icon-username"></i> 反馈信息</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body layui-container">
+        <h3 style="font-size: xx-large; text-align: center"> 用 户 反 馈 信 息 </h3>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>用户名</th>
+            <th>邮箱</th>
+            <th>反馈内容</th>
+            <th>提交时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="feedback : ${feedbacks}">
+            <td th:text="${feedback.username}"></td>
+            <td th:text="${feedback.email}"></td>
+            <td th:text="${feedback.message}"></td>
+            <td th:text="${#dates.format(feedback.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td> <!-- 确保这一行存在 -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+    <script src="/scripts/jquery.min.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.use(['carousel', 'element'], function () {
+            let carousel = layui.carousel;
+            let element = layui.element;
+
+            // 建造实例
+            carousel.render({
+                elem: '#index'
+                , width: '900' // 设置容器宽度
+                , height: '550px' // 设置容器高度
+            });
+        });
+    </script>
+    <div th:include="common/footer :: footer"></div>
+
+</div>
+</body>
+</html>

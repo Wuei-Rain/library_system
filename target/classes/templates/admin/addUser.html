@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员-添加用户</title>
+    <link href="/layui/css/layui.css" rel="stylesheet" media="all"/>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+
+    <div th:include="common/admin_header :: header"></div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree">
+                <li class="layui-nav-item"><a href="/adminLogin"><i class="layui-icon layui-icon-home"></i> 图书馆首页</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-read"></i> 书籍管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/addBookPage">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 录入新书</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-tabs"></i> 类别管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/addCategoryPage?pageNum=1">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 新建类别</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-list"></i> 书籍信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/showBooksPage">&emsp;&emsp;<i class="layui-icon layui-icon-search"></i> 查询书籍</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-user"></i> 用户管理</a>
+                    <dl class="layui-nav-child ">
+                        <dd><a href="/showUsersPage?pageNum=1">&emsp;&emsp;<i class="layui-icon layui-icon-group"></i> 管理用户</a></dd>
+                        <dd class="layui-this"><a href="/addUserPage">&emsp;&emsp;<i class="layui-icon layui-icon-add-circle"></i> 新增用户</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-notice"></i> 借阅信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/allBorrowBooksRecordPage?pageNum=1">&emsp;&emsp;<i class="layui-icon layui-icon-form"></i> 借书记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-notice"></i> 活动管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="publishActivity">&emsp;&emsp;<i class="layui-icon layui-icon-form"></i> 发布活动</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="/feedbackList"><i class="layui-icon layui-icon-username"></i> 反馈信息</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+
+    <div style="margin : 30px auto; padding:40px 16px ;border: 200px; width: 400px; height: 550px; background-color: #f2f2f2"
+         class="layui-container">
+
+        <hr class="layui-bg-blue">
+        <h1 style="text-align:center">新增用户</h1>
+        <hr class="layui-bg-blue" style="margin-bottom: 40px">
+
+        <form class="layui-form" id="addUserForm" action="#">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <input type="text" class="layui-input layui-input-inline" id="userName" autocomplete="off"
+                       name="userName" lay-verify="required"
+                       placeholder="请输入用户名"><br><br>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码</label>
+                <input class="layui-input layui-input-inline" type="password" id="password" autocomplete="off"
+                       lay-verify="required" name="userPwd" placeholder="请输入密码">
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <input class="layui-input layui-input-inline" type="text" lay-verify="email"
+                       id="email" name="userEmail" placeholder="请输入邮箱">
+            </div>
+
+            <div style="margin-left: 120px">
+                <input class="layui-btn layui-btn-radius" lay-filter="btn_addUser"
+                       id="btn_addUser" type="submit" lay-submit="" value="添加用户">
+            </div>
+        </form>
+    </div>
+
+    <div th:include="common/footer :: footer"></div>
+
+</div>
+
+<script src="/scripts/jquery.min.js"></script>
+<script src="/layui/layui.js"></script>
+<script src="/scripts/admin/addUser.js"></script>
+
+</body>
+</html>

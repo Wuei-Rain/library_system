@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>活动列表</title>
+    <link href="/layui/css/layui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/styles/custom.css"/>
+    <style>
+        /* 页面主体样式 */
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* 页面布局结构样式 */
+        .layui-layout {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 左侧导航栏样式 */
+        .layui-side {
+            background-color: #2e3b4e;
+        }
+
+        .layui-side .layui-nav .layui-nav-item a {
+            color: #cfd8dc;
+        }
+
+        .layui-side .layui-nav .layui-nav-item a:hover {
+            color: #ffffff;
+            background-color: #394a5e;
+        }
+
+        /* 主体内容区样式 */
+        header h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #444;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 活动列表卡片样式 */
+        .notification {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .notification:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .notification h2 {
+            font-size: 20px;
+            color: #333;
+            margin: 0 0 10px;
+            border-left: 4px solid #1e90ff;
+            padding-left: 10px;
+        }
+
+        .notification p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+            margin: 5px 0;
+        }
+
+        .notification small {
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* 页脚样式 */
+        .footer {
+            background-color: #f9f9f9;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div th:include="common/user_header :: header"></div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree">
+                <li class="layui-nav-item"><a href="/userLogin"><i class="layui-icon layui-icon-home"></i> 图书馆首页</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-template"></i> 书籍信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/findBookPage"><i class="layui-icon layui-icon-search"></i> 查询书籍</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-edit"></i> 书籍管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/borrowingPage"><i class="layui-icon layui-icon-add-circle"></i> 借阅书籍</a></dd>
+                        <dd><a href="/userReturnBooksPage"><i class="layui-icon layui-icon-reduce-circle"></i> 归还书籍</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-list"></i> 借阅信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/userBorrowBookRecord"><i class="layui-icon layui-icon-notice"></i> 借书记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;"><i class="layui-icon layui-icon-edit"></i> 活动信息</a>
+                    <dl class="layui-nav-child">
+                        <dd class="layui-this"><a href="/activityList"><i class="layui-icon layui-icon-notice"></i> 图书活动</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="/bookListPage"><i class="layui-icon layui-icon-file"></i> 图书列表</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="layui-body">
+        <div class="layui-container">
+            <header>
+                <h1>图书馆活动</h1>
+            </header>
+
+            <main>
+                <div th:each="activity : ${activities}" class="notification">
+                    <h2 th:text="${activity.activityName}">活动名称</h2>
+                    <p th:text="${activity.activityDescription}">活动描述</p>
+                    <p><small th:text="'活动日期：' + ${#dates.format(activity.activityDate, 'yyyy-MM-dd ')}">活动日期</small></p>
+                </div>
+            </main>
+
+
+
+            <div th:include="common/footer :: footer" class="footer"></div>
+        </div>
+
+        <script src="/scripts/jquery.min.js"></script>
+        <script src="/layui/layui.js"></script>
+        <script>
+            layui.use(['form', 'element'], function () {
+                let form = layui.form;
+                let element = layui.element;
+
+
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>

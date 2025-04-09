@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>通知公告 </title>
+    <link href="/layui/css/layui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/styles/custom.css"/>
+    <style>
+        body {
+            /*font-family: Arial, sans-serif;*/
+            /*margin: 0;*/
+            /*padding: 20px;*/
+            background-color: #f9f9f9;
+        }
+        header {
+            background: #6bb68a;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        main {
+            margin-top: 20px;
+            max-height: calc(100vh - 150px); /* Adjusted to leave space for header and footer */
+            overflow-y: auto; /* Allows vertical scrolling */
+        }
+        .notification {
+            background: white;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin: 0;
+        }
+        p {
+            margin: 10px 0;
+        }
+        footer {
+            width: 100%;
+            background-color: #f9f9f9; /* 背景颜色可以根据需要调整 */
+            color: #333; /* 文字颜色可以根据需要调整 */
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <header>
+        <h1>通知公告</h1>
+    </header>
+
+    <main>
+        <div class="notification">
+            <h2>书籍借阅提醒</h2>
+            <p>请各位读者在借书后及时归还，以便他人共享书籍资源。</p>
+            <p><small>发布日期：2024-10-30</small></p>
+        </div>
+
+        <div class="notification">
+            <h2>读书活动</h2>
+            <p>本馆将于下月举行读书分享会，欢迎大家积极报名参与！</p>
+            <p><small>发布日期：2024-11-12</small></p>
+        </div>
+
+        <div class="notification">
+            <h2>新书上架通知</h2>
+            <p>我们新上架了一批图书，欢迎前来借阅！</p>
+            <p><small>发布日期：2024-11-15</small></p>
+        </div>
+
+        <div class="notification">
+            <h2>图书捐赠</h2>
+            <p>欢迎大家捐赠闲置书籍，助力图书馆资源共享！</p>
+            <p><small>发布日期：2024-11-15</small></p>
+        </div>
+
+        <div class="notification">
+            <h2>特别展览</h2>
+            <p>本馆将于下月举办“经典文学”展览，期待您的光临。</p>
+            <p><small>发布日期：2024-11-16</small></p>
+        </div>
+
+        <div class="notification">
+            <h2>志愿者招募</h2>
+            <p>图书馆正在招募志愿者，欢迎热爱阅读的朋友加入我们，共同推动阅读活动！</p>
+            <p><small>发布日期：2024-11-18</small></p>
+        </div>
+
+        <div class="notification">
+            <h2>读书笔记征集</h2>
+            <p>欢迎读者提交读书笔记，优秀作品将会在馆内展示并获得小礼品。</p>
+            <p><small>发布日期：2024-11-20</small></p>
+        </div>
+
+        <div class="notification">
+            <h2>图书清理通知</h2>
+            <p>为提升图书馆服务质量，将对馆内图书进行整理，期间可能会影响借阅服务，敬请谅解。</p>
+            <p><small>发布日期：2024-11-20</small></p>
+        </div>
+    </main>
+
+</div>
+<footer>
+    <p>感谢您关注我们的图书馆，我们期待为您提供优质的服务，陪伴您在知识的海洋中遨游！</p>
+</footer>
+<script src="/scripts/jquery.min.js"></script>
+<script src="/layui/layui.js"></script>
+</body>
+</html>

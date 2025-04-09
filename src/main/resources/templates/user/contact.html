@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户反馈 </title>
+    <link href="/layui/css/layui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/styles/custom.css"/>
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        header {
+            background:#6bb68a;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .description {
+            margin: 15px 0;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        /*footer {*/
+        /*    margin-top: 20px;*/
+        /*    text-align: center;*/
+        /*    font-size: 14px;*/
+        /*}*/
+        main {
+            margin-top: 20px;
+            max-height: calc(100vh - 150px); /* Adjusted to leave space for header and footer */
+            overflow-y: auto; /* Allows vertical scrolling */
+        }
+        footer {
+            width: 100%;
+            background-color: #f9f9f9; /* 背景颜色可以根据需要调整 */
+            color: #333; /* 文字颜色可以根据需要调整 */
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+
+    <div class="feedback-container">
+        <header>
+            <h1>用户反馈</h1>
+        </header>
+
+        <div class="description">
+            您的反馈对我们非常重要！请填写以下表单，让我们知道您对图书馆服务的建议和意见。
+        </div>
+
+        <form id="feedbackForm" onsubmit="event.preventDefault(); submitFeedback();" class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label" for="username">用户名</label>
+                <div class="layui-input-block">
+                    <input type="text" id="username" name="username" required placeholder="请输入用户名" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label" for="email">邮箱</label>
+                <div class="layui-input-block">
+                    <input type="email" id="email" name="email" placeholder="请输入邮箱" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label" for="message">反馈内容</label>
+                <div class="layui-input-block">
+                    <textarea id="message" name="message" rows="4" required placeholder="请输入反馈内容" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn layui-btn-normal">发送反馈</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <p>感谢您关注我们的图书馆，我们期待为您提供优质的服务，陪伴您在知识的海洋中遨游！</p>
+    </footer>
+</div>
+
+<script src="/scripts/jquery.min.js"></script>
+<script src="/layui/layui.js"></script>
+<script>
+    layui.use(['form', 'element'], function () {
+        let form = layui.form;
+        let element = layui.element;
+    });
+    function submitFeedback() {
+        const formData = new FormData(document.getElementById("feedbackForm"));
+        fetch("/submitFeedback", {
+            method: "POST",
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('网络响应不正常');
+                }
+                return response.text();
+            })
+            .then(result => {
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    layer.msg(result, {icon: 1, time: 2000}, function() {
+                        document.getElementById("feedbackForm").reset();
+                    });
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    layer.msg('提交失败，请重试！', {icon: 2, time: 2000});
+                });
+            });
+    }
+</script>
+
+</body>
+</html>
